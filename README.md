@@ -146,3 +146,9 @@ sudo avrdude -c avrispv2 -P /dev/ttyACM0 -p m328p -U flash:w:hello.out:e
 ```
 sudo avrdude -c avrispv2 -b9600 -P /dev/ttyACM0 -p m328p -U flash:w:hello.out:e
 ```
+
+## Tips
+### strip
+```
+avr-strip hello.out
+```
