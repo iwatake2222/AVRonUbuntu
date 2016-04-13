@@ -152,3 +152,9 @@ sudo avrdude -c avrispv2 -b9600 -P /dev/ttyACM0 -p m328p -U flash:w:hello.out:e
 ```
 avr-strip hello.out
 ```
+
+### C99
+```
+.c.o:
+	$(CC) $(CFLAGS) $(INCLUDES) -std=c99 -c $< -o $(DIR_BUILD)/$(notdir $(basename $<)).o
+```
