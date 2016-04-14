@@ -31,7 +31,7 @@ avr-gcc -g -c -O2 -mmcu=atmega328p -DF_CPU=16000000UL main.c -o main.o
 avr-gcc -g -O2 -mmcu=atmega328p main.o -o hello.out
 
 # OBJ
-#avr-objcopy -j .text -j .data -O ihex hello hello.ihex
+#avr-objcopy -j .text -j .data -O ihex hello.out hello.ihex
 ```
 
 * sample: main.c
@@ -72,7 +72,7 @@ AR = avr-ar
 ASM = avr-as
 OBJCOPY = avr-objcopy
 CFLAGS = -g -O2 -Wall -mmcu=$(MCU) -DF_CPU=$(F_CPU)
-LDFLAGS =  -g -O2 -Wall -mmcu=$(MCU)
+LDFLAGS =  -g -O2 -Wl,-Map,hello.map -mmcu=$(MCU)
 INCLUDES = 
 LIBS = 
 SUBS = 
@@ -83,7 +83,7 @@ OBJS = main.o sub1.o sub2dir/sub2.o
 
 
 .c.o:
-	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $(DIR_BUILD)/$(notdir $(basename $<)).o
+	$(CC) $(CFLAGS) $(INCLUDES) -std=c99 -c $< -o $(DIR_BUILD)/$(notdir $(basename $<)).o
 .cpp.o:
 	$(CXX) $(CFLAGS) $(INCLUDES) -c $< -o $(DIR_BUILD)/$(notdir $(basename $<)).o
 
@@ -157,4 +157,9 @@ avr-strip hello.out
 ```
 .c.o:
 	$(CC) $(CFLAGS) $(INCLUDES) -std=c99 -c $< -o $(DIR_BUILD)/$(notdir $(basename $<)).o
+```
+
+### Disasm
+```
+avr-objdump -D hello.out > temp.txt
 ```

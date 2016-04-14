@@ -8,8 +8,8 @@ CXX = avr-g++
 AR = avr-ar
 ASM = avr-as
 OBJCOPY = avr-objcopy
-CFLAGS = -g -O2 -Wall -mmcu=$(MCU) -DF_CPU=$(F_CPU)
-LDFLAGS =  -g -O2 -Wall -mmcu=$(MCU)
+CFLAGS = -g -O2 -mmcu=$(MCU) -DF_CPU=$(F_CPU)
+LDFLAGS =  -g -O2 -Wl,-Map,hello.map -mmcu=$(MCU) 
 INCLUDES = 
 LIBS = 
 #SRCS = main.c sub.c
@@ -18,7 +18,7 @@ OBJS = main.o sub1.o sub2dir/sub2.o
 
 
 .c.o:
-	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $(DIR_BUILD)/$(notdir $(basename $<)).o
+	$(CC) $(CFLAGS) $(INCLUDES) -std=c99 -c $< -o $(DIR_BUILD)/$(notdir $(basename $<)).o
 .cpp.o:
 	$(CXX) $(CFLAGS) $(INCLUDES) -c $< -o $(DIR_BUILD)/$(notdir $(basename $<)).o
 
