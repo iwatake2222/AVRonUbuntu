@@ -163,3 +163,8 @@ avr-strip hello.out
 ```
 avr-objdump -D hello.out > temp.txt
 ```
+
+### Memory usage (allocation) summary
+```
+readelf -S hello.out
+```
