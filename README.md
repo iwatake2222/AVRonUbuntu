@@ -166,5 +166,5 @@ avr-objdump -D hello.out > temp.txt
 
 ### Memory usage (allocation) summary
 ```
-readelf -S hello.out
+avr-readelf -S hello.out
 ```
